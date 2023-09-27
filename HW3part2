@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW3part2 - Sales Commission</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #50b3a2;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+  }
+  table {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #50b3a2;
+    color: white;
+  }
+  .right-align {
+    text-align: right;
+  }
+  nav {
+    padding: 10px;
+    text-align: center;
+  }
+  nav a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sales Commission</h1>
+</header>
+<nav>
+  <a href="hw1.html">Main Page</a>
+  <a href="hw3.html">Homework 3</a>
+</nav>
+<table>
+  <tr>
+    <th>Seller's Name</th>
+    <td colspan="2"><input type="text" id="sellerName"></td>
+  </tr>
+  <tr>
+    <th>Item #</th>
+    <th>Qty Sold</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>1 (20.99)</td>
+    <td><input type="number" id="item1Qty" min="0" oninput="calculateTotal(1, 20.99)"></td>
+    <td class="right-align"><input type="text" id="item1Total" readonly></td>
+  </tr>
+  <tr>
+    <td>2 (12.75)</td>
+    <td><input type="number" id="item2Qty" min="0" oninput="calculateTotal(2, 12.75)"></td>
+    <td class="right-align"><input type="text" id="item2Total" readonly></td>
+  </tr>
+  <tr>
+    <td>3 (9.95)</td>
+    <td><input type="number" id="item3Qty" min="0" oninput="calculateTotal(3, 9.95)"></td>
+    <td class="right-align"><input type="text" id="item3Total" readonly></td>
+  </tr>
+  <tr>
+    <td>4 (35.89)</td>
+    <td><input type="number" id="item4Qty" min="0" oninput="calculateTotal(4, 35.89)"></td>
+    <td class="right-align"><input type="text" id="item4Total" readonly></td>
+  </tr>
+  <tr>
+    <th>Total Sold ($)</th>
+    <td colspan="2" class="right-align"><input type="text" id="totalSold" readonly></td>
+  </tr>
+  <tr>
+    <th>Total Earnings ($)</th>
+    <td colspan="2" class="right-align"><input type="text" id="totalEarnings" readonly></td>
+  </tr>
+</table>
+
+<script>
+function calculateTotal(itemNumber, itemValue) {
+  const qty = document.getElementById(`item${itemNumber}Qty`).value;
+  if (qty < 0) return;
+
+  const total = (qty * itemValue).toFixed(2);
+  document.getElementById(`item${itemNumber}Total`).value = total;
+
+  calculateEarnings();
+}
+
+function calculateEarnings() {
+  const item1Total = parseFloat(document.getElementById('item1Total').value) || 0;
+  const item2Total = parseFloat(document.getElementById('item2Total').value) || 0;
+  const item3Total = parseFloat(document.getElementById('item3Total').value) || 0;
+  const item4Total = parseFloat(document.getElementById('item4Total').value) || 0;
+
+  const totalSold = (item1Total + item2Total + item3Total + item4Total).toFixed(2);
+  document.getElementById('totalSold').value = totalSold;
+
+  const totalEarnings = (250 + (totalSold * 0.09)).toFixed(2);
+  document.getElementById('totalEarnings').value = totalEarnings;
+}
+</script>
+</body>
+</html>
