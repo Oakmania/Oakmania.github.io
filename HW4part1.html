@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 4 - Part 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
 
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                padding: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Using "for" statements</h1>
+
+<p id="forResults"></p>
+<p id="whileResults"></p>
+
+<a href="https://oakmania.github.io/hw4.html">Homework 4</a>
+<a href="https://oakmania.github.io/hw1.html">Return to the main page</a>
+
+<script>
+    // For loop calculations
+    let productFor = 1;
+    let sumFor = 0;
+    let sequenceFor = "";
+
+    for(let i = 5; i <= 25; i += 4) {
+        productFor *= i;
+        sumFor += i;
+        sequenceFor += i + (i < 25 ? " * " : " ");
+    }
+
+    document.getElementById("forResults").innerHTML = `
+        The result of ${sequenceFor} is ${productFor.toLocaleString()}.
+        <br>
+        The result of ${sequenceFor.replace(/\*/g, "+")} is ${sumFor.toLocaleString()}.
+    `;
+
+    // While loop calculations
+    let productWhile = 1;
+    let sumWhile = 0;
+    let sequenceWhile = "";
+    let j = 3;
+
+    while(j <= 18) {
+        productWhile *= j;
+        sumWhile += j;
+        sequenceWhile += j + (j < 18 ? " * " : " ");
+        j += 3;
+    }
+
+    document.getElementById("whileResults").innerHTML = `
+        The result of ${sequenceWhile} is ${productWhile.toLocaleString()}.
+        <br>
+        The result of ${sequenceWhile.replace(/\*/g, "+")} is ${sumWhile.toLocaleString()}.
+    `;
+
+</script>
+
+</body>
+</html>
