@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework 5 Part 1</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    header {
+        background: #35424a;
+        color: #ffffff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #e8491d 3px solid;
+    }
+    header a {
+        color: #ffffff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+    header ul {
+        padding: 0;
+        list-style: none;
+    }
+    header li {
+        display: inline;
+        padding: 0 20px 0 20px;
+    }
+    header #branding {
+        float: left;
+    }
+    header #branding h1 {
+        margin: 0;
+    }
+    header nav {
+        float: right;
+        margin-top: 10px;
+    }
+    header .highlight, header .current a {
+        color: #e8491d;
+        font-weight: bold;
+    }
+    header a:hover {
+        color: #ffffff;
+        font-weight: bold;
+    }
+    @media(max-width: 768px) {
+        header #branding,
+        header nav {
+            float: none;
+            text-align: center;
+            margin: auto;
+        }
+        header nav ul {
+            margin-top: 0;
+        }
+        header nav li {
+            display: block;
+            padding: 5px;
+        }
+    }
+    .alert {
+        color: red;
+    }
+    .success {
+        color: green;
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight">Homework</span> 5 Part 1</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="hw5.html">Back to Homework 5 main page</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <form id="survey-form">
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+
+        <p>Age Group:</p>
+        <label for="under-21">Less than 21</label>
+        <input type="radio" id="under-21" name="age-group" value="under-21">
+        <label for="between-21-and-50">Between 21 and 50</label>
+        <input type="radio" id="between-21-and-50" name="age-group" value="between-21-and-50">
+        <label for="over-50">Older than 50</label>
+        <input type="radio" id="over-50" name="age-group" value="over-50">
+
+        <p>Browsers Used:</p>
+        <label for="firefox">Firefox</label>
+        <input type="checkbox" id="firefox" name="browser" value="Firefox">
+        <label for="edge">Edge</label>
+        <input type="checkbox" id="edge" name="browser" value="Edge">
+        <label for="chrome">Chrome</label>
+        <input type="checkbox" id="chrome" name="browser" value="Chrome">
+        <label for="safari">Safari</label>
+        <input type="checkbox" id="safari" name="browser" value="Safari">
+
+        <p>Preferred Movie Genre:</p>
+        <select id="movie-genre">
+            <option value="">--Select a Genre--</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+        <button type="reset">Clear</button>
+    </form>
+    <div id="output"></div>
+</div>
+
+<script>
+function submitForm() {
+    let fullName = document.getElementById("full-name").value;
+    let ageGroup = document.querySelector('input[name="age-group"]:checked');
+    let browsers = document.querySelectorAll('input[name="browser"]:checked');
+    let movieGenre = document.getElementById("movie-genre").value;
+    let output = document.getElementById("output");
+
+    // Reset output
+    output.className = '';
+    output.innerHTML = '';
+
+    // Validation
+    if (!fullName) {
+        output.classList.add('alert');
+        output.innerHTML += '<p>Please enter your full name.</p>';
+    }
+    if (!ageGroup) {
+        output.classList.add('alert');
+        output.innerHTML += '<p>Please select your age group.</p>';
+    }
+    if (browsers.length === 0) {
+        output.classList.add('alert');
+        output.innerHTML += '<p>Please select at least one browser you have used.</p>';
+    }
+    if (!movieGenre) {
+        output.classList.add('alert');
+        output.innerHTML += '<p>Please select your preferred movie genre.</p>';
+    }
+
+    // If all fields are filled
+    if (fullName && ageGroup && browsers.length > 0 && movieGenre) {
+        output.classList.add('success');
+        output.innerHTML = 'Thanks, your data was submitted!';
+    }
+}
+</script>
+
+</body>
+</html>
