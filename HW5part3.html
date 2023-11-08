@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework 5 Part 3</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        color: #333;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    header {
+        background: #35424a;
+        color: #ffffff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #e8491d 3px solid;
+    }
+    header a {
+        color: #ffffff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+    .output {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 20px 0;
+        height: 150px;
+        overflow: auto;
+    }
+    button {
+        margin: 5px 0;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1><span class="highlight">State Information</span> Lookup</h1>
+        <a href="hw5.html">Back to Homework 5 Main Page</a>
+    </div>
+</header>
+
+<div class="container">
+    <form id="stateForm">
+        <label for="stateInput">Enter State Name or Abbreviation:</label>
+        <input type="text" id="stateInput" placeholder="e.g., California or CA">
+        <button type="button" onclick="getStateInfo()">Get State Info</button>
+        <button type="reset">Clear</button>
+        <div class="output" id="stateInfoOutput"></div>
+    </form>
+</div>
+
+<script>
+// Data from the table, represented as a two-dimensional array
+var statesData = [
+    ["AL", "Alabama", "Montgomery", "4,903,185"],
+    ["AK", "Alaska", "Juneau", "731,545"],
+    ["AZ", "Arizona", "Phoenix", "7,278,717"],
+    ["AR", "Arkansas", "Little Rock", "3,017,825"],
+    ["CA", "California", "Sacramento", "39,512,223"],
+    ["CO", "Colorado", "Denver", "5,758,736"]
+    // Add the rest of the states as necessary
+];
+
+function getStateInfo() {
+    var input = document.getElementById("stateInput").value.trim().toLowerCase();
+    var outputDiv = document.getElementById("stateInfoOutput");
+    outputDiv.innerHTML = ""; // Clear previous output
+    var stateFound = false;
+    
+    for (var i = 0; i < statesData.length; i++) {
+        if (statesData[i][0].toLowerCase() === input || statesData[i][1].toLowerCase() === input) {
+            outputDiv.innerHTML = "Thanks for your inquiry, here is the information you requested:<br>" +
+                                  "State abbr = " + statesData[i][0] + "<br>" +
+                                  "State Name = " + statesData[i][1] + "<br>" +
+                                  "Capital = " + statesData[i][2] + "<br>" +
+                                  "Population = " + statesData[i][3];
+            stateFound = true;
+            break;
+        }
+    }
+    
+    if (!stateFound) {
+        outputDiv.innerHTML = "Sorry, we do not have information about this state! We only have information about AL, AK, AZ, AR, CA, CO, ...";
+    }
+}
+
+// Add event listener for the form reset button
+document.getElementById("stateForm").addEventListener("reset", function() {
+    document.getElementById("stateInfoOutput").innerHTML = ""; // Clear output
+});
+</script>
+
+</body>
+</html>
 
