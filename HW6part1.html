@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web tool for calculating various rounded values of a decimal number with 4 decimals.">
+    <meta name="author" content="Your Name">
+    <meta name="keywords" content="decimal calculator, number rounding, math tool">
+    <title>Decimal Number Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Decimal Number Calculator</h2>
+        <form id="numberForm">
+            <input type="text" id="numberInput" placeholder="Enter a number with 4 decimals">
+            <button type="button" onclick="calculate()">Submit</button>
+            <button type="reset">Clear</button>
+        </form>
+        <div id="result"></div>
+        <a href="hw6.html">Back to Main Page</a>
+    </div>
+
+    <script>
+        function calculate() {
+            var input = document.getElementById('numberInput').value;
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous results
+
+            var number = parseFloat(input);
+            if (!number || input.split('.').length != 2 || input.split('.')[1].length < 4) {
+                resultDiv.innerHTML = 'You need to type a number with at least 4 decimals, please try again';
+                return;
+            }
+
+            var roundedInt = Math.round(number);
+            var sqrtInt = Math.round(Math.sqrt(number));
+            var roundedTenth = Math.round(number * 10) / 10;
+            var roundedHundredth = Math.round(number * 100) / 100;
+            var roundedThousandth = Math.round(number * 1000) / 1000;
+
+            resultDiv.innerHTML = 'You typed number ' + number.toFixed(4) +
+                '<br>Rounded to the nearest integer = ' + roundedInt +
+                '<br>Square root rounded to integer = ' + sqrtInt +
+                '<br>Rounded to the nearest 10th position = ' + roundedTenth.toFixed(1) +
+                '<br>Rounded to the nearest 100th position = ' + roundedHundredth.toFixed(2) +
+                '<br>Rounded to the nearest 1000th position = ' + roundedThousandth.toFixed(3);
+        }
+    </script>
+</body>
+</html>
