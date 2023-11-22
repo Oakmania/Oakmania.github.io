@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web tool to count the frequency of a specific character within a given text.">
+    <meta name="author" content="Orlando Garcia">
+    <meta name="keywords" content="character count, text analysis, frequency counter">
+    <title>Character Frequency Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Character Frequency Finder</h2>
+        <form id="charForm">
+            <textarea id="textContent" placeholder="Type your content here"></textarea>
+            <input type="text" id="charInput" placeholder="Enter a single character" maxlength="1">
+            <button type="button" onclick="searchCharacter()">Submit</button>
+        </form>
+        <div id="result"></div>
+        <a href="hw6.html">Back to Homework 6</a>
+    </div>
+
+    <script>
+        function searchCharacter() {
+            var content = document.getElementById('textContent').value;
+            var character = document.getElementById('charInput').value.toLowerCase();
+            var count = (content.toLowerCase().match(new RegExp(character, 'g')) || []).length;
+            var resultDiv = document.getElementById('result');
+
+            if (count > 0) {
+                resultDiv.innerHTML = 'The character "' + character + '" shows up ' + count + ' times in the content.';
+            } else {
+                window.open('about:blank', '', 'width=300,height=100,left=100,top=100').document.write('Search character "' + character + '" not found in the content you typed.<br><button onclick="window.close()">Close</button>');
+                resultDiv.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>
