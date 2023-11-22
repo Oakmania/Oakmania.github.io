@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Phone Number Formatter">
+    <meta name="author" content="Orlando Garcia">
+    <title>Phone Number Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        input[readonly] {
+            background-color: #e9ecef;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Phone Number Extractor</h2>
+        <form id="phoneForm">
+            <input type="text" id="phoneInput" placeholder="(999) 999-9999">
+            <input type="text" id="areaCode" placeholder="Area Code" readonly>
+            <input type="text" id="firstThree" placeholder="First 3 Digits" readonly>
+            <input type="text" id="lastFour" placeholder="Last 4 Digits" readonly>
+            <button type="button" onclick="extractNumbers()">Extract</button>
+            <button type="reset">Clear</button>
+        </form>
+        <div id="errorMessage" class="error"></div>
+        <a href="hw6.html">Back to Homework 6</a>
+    </div>
+
+    <script>
+        function extractNumbers() {
+            var phone = document.getElementById('phoneInput').value;
+            var regex = /^\((\d{3})\) (\d{3})-(\d{4})$/;
+            var match = phone.match(regex);
+            var errorDiv = document.getElementById('errorMessage');
+
+            if (match) {
+                document.getElementById('areaCode').value = match[1];
+                document.getElementById('firstThree').value = match[2];
+                document.getElementById('lastFour').value = match[3];
+                errorDiv.innerHTML = '';
+            } else {
+                document.getElementById('areaCode').value = '';
+                document.getElementById('firstThree').value = '';
+                document.getElementById('lastFour').value = '';
+                errorDiv.innerHTML = 'Please enter the phone number in the format (999) 999-9999.';
+            }
+        }
+    </script>
+</body>
+</html>
