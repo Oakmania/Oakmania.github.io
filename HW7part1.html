@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Style Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .styled-area {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .form-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .link-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customize Your View</h1>
+        <main class="styled-area">
+            <p>Paragraph one with some text.</p>
+            <p>Paragraph two with some more text.</p>
+            <p>Paragraph three with even more text.</p>
+        </main>
+
+        <form class="form-section">
+            <fieldset>
+                <legend>Background Color</legend>
+                <label><input type="radio" name="background" value="#ffcccb"> Light Red</label>
+                <label><input type="radio" name="background" value="#add8e6"> Light Blue</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Text Style</legend>
+                <label><input type="checkbox" value="bold"> Bold</label>
+                <label><input type="checkbox" value="italic"> Italic</label>
+                <label><input type="checkbox" value="underline"> Underline</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Font Size</legend>
+                <select id="font-size">
+                    <option value="1em">Default</option>
+                    <option value="1.2em">Large</option>
+                    <option value="1.5em">Extra Large</option>
+                </select>
+            </fieldset>
+        </form>
+
+        <a href="hw7.html" class="link-back">Go Back to Homework 7</a>
+    </div>
+
+    <script>
+        document.forms[0].addEventListener('change', function(e) {
+            var styledArea = document.querySelector('.styled-area');
+            
+            if (e.target.name === 'background') {
+                styledArea.style.backgroundColor = e.target.value;
+            } else if (e.target.type === 'checkbox') {
+                var style = e.target.value;
+                if (e.target.checked) {
+                    styledArea.style.fontWeight = style === 'bold' ? 'bold' : styledArea.style.fontWeight;
+                    styledArea.style.fontStyle = style === 'italic' ? 'italic' : styledArea.style.fontStyle;
+                    styledArea.style.textDecoration = style === 'underline' ? 'underline' : styledArea.style.textDecoration;
+                } else {
+                    if (style === 'bold') styledArea.style.fontWeight = 'normal';
+                    if (style === 'italic') styledArea.style.fontStyle = 'normal';
+                    if (style === 'underline') styledArea.style.textDecoration = 'none';
+                }
+            } else if (e.target.id === 'font-size') {
+                styledArea.style.fontSize = e.target.value;
+            }
+        });
+    </script>
+</body>
+</html>
