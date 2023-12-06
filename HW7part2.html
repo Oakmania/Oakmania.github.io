@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning about Cookies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        form, .welcome-message {
+            background-color: #e8e8e8;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin-top: 10px;
+        }
+        .link-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Learning about Cookies</h1>
+
+        <div id="content-area">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+
+        <a href="hw7.html" class="link-back">Go Back to Homework 7</a>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for(let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if(name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        function setCookie(name, value) {
+            document.cookie = name + "=" + encodeURIComponent(value) + ";path=/";
+        }
+
+        function checkUser() {
+            const name = getCookie("name");
+            const username = getCookie("username");
+
+            if (name && username) {
+                document.getElementById("content-area").innerHTML = `<div class="welcome-message">Welcome Back, ${name}!</div>`;
+            } else {
+                document.getElementById("content-area").innerHTML = `
+                    <form id="welcomeForm">
+                        <input type="text" id="name" placeholder="Your Name" required><br>
+                        <input type="text" id="username" placeholder="Your Username" required><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                `;
+                document.getElementById("welcomeForm").onsubmit = function(event) {
+                    event.preventDefault();
+                    setCookie("name", document.getElementById("name").value);
+                    setCookie("username", document.getElementById("username").value);
+                    checkUser();
+                };
+            }
+        }
+
+        window.onload = checkUser;
+    </script>
+</body>
+</html>
