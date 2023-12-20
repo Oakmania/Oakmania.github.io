@@ -113,7 +113,8 @@
         <ul>
             <li>
                 <h2>Explanation of AJAX</h2>
-                <p>PLACEHOLDER</p>
+                <p>In this webpage, an AJAX call is executed through JavaScript to fetch data from an XML file, specifically designed for a dynamic and responsive user experience. This process is initiated when the user clicks the "Get CD collection" button, triggering the loadDoc() function. This function creates an XMLHttpRequest object, xhttp, which is a core component of AJAX used for making HTTP requests. It's set up to retrieve data from "cd_catalog.xml" using a GET request. The request is sent using the xhttp.send() method, and upon successful completion, the myFunction() is invoked with the server's response.</p>
+                <p>The myFunction(xml) handles the processing of the received XML data. It iterates through the XML document, extracting information about each CD, specifically the artist and title from the "ARTIST" and "TITLE" tags. This data is then used to construct a string that forms the HTML table rows, displaying each CD's details. This string is subsequently inserted into the HTML document within the element having the ID "demo". This technique of updating the webpage's content dynamically, without a full page reload, showcases the essence of AJAX, enabling a seamless and interactive user experience on the web page.</p>
             </li>
             
             <li>
