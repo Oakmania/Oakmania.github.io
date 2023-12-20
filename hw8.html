@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="CIS 114 Homework 8">
-    <title>CIS 114 - Homework 8</title>
+    <meta name="description" content="Learning JavaScript and AJAX">
+    <title>AJAX Applications</title>
+
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+<body>
+
+<button type="button" onclick="loadDoc()">Get CD collection</button>
+<br><br>
+<table id="demo"></table>
+
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    myFunction(this);
+  }
+  xhttp.open("GET", "cd_catalog.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+
 </head>
 <body>
-    <h1>Coming Soon!</h1>
-    <a href="https://oakmania.github.io/hw1.html">Back to Main Page</a>
+
+<div class="container">
+    <h1>Homework 8 - AJAX Application</h1>
+    
+    <ul>
+        <li>
+            <a href="HW7part1.html">Part 1</a>
+            <p>Tasked students to create an interactive webpage where users can dynamically alter the appearance of a text area. This is achieved through a form that allows users to choose different styles, such as background color, text formatting (bold, italic, underline), and font size. As users select these styles, they are immediately applied to the text area, demonstrating real-time changes. This exercise showcases the use of HTML elements, CSS for styling, and JavaScript for dynamic interaction and immediate application of styles.</p>
+        </li>
+        
+        <li>
+            <a href="HW7part2.html">Part 2</a>
+            <p> The goal is to develop a webpage that utilizes cookies to personalize the user experience. This is achieved by saving two pairs of cookies: one for the user's name and another for their username. On a user's first visit, they are prompted to enter this information. Upon subsequent visits, the webpage recognizes the user through these cookies and displays a personalized welcome back message. This exercise illustrates cookie handling in web development, providing a basic understanding of storing and retrieving user data to enhance interactivity and user experience on a website. </p>
+        </li>
+
+        
+        <li>
+            <a href="https://oakmania.github.io/hw1.html">Back to Main Page</a>
+           
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
