@@ -97,7 +97,7 @@
         function myFunction(xml) {
             const xmlDoc = xml.responseXML;
             const x = xmlDoc.getElementsByTagName("CD");
-            let table="<tr><th>Artist</th><th>Title</th><th>Country</th><th>Company</th><th>Price</th><th>Year</th></tr>";
+            let table="<tr><th>Artist</th><th>Title</th><th>Country</th><th>Company</th><th>Price(USD)</th><th>Year</th></tr>";
             for (let i = 0; i <x.length; i++) { 
                 table += "<tr><td>" +
                 x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
