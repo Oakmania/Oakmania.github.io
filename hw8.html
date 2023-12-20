@@ -1,70 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Learning JavaScript and AJAX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJAX Applications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
 
-<style>
-table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
-}
-th,td {
-  padding: 5px;
-}
-</style>
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<h1>Homework 8 - AJAX Application</h1>
-<a href="https://oakmania.github.io/hw1.html">Back to Main Page</a>
+    <h1>Homework 8 - AJAX Application</h1>
+    <a href="https://oakmania.github.io/hw1.html">Back to Main Page</a>
     
-<button type="button" onclick="loadDoc()">Get CD collection</button>
-<br><br>
-<table id="demo"></table>
+    <button type="button" onclick="loadDoc()">Get CD collection</button>
+    <br><br>
+    <table id="demo"></table>
 
-<script>
-function loadDoc() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function() {
-    myFunction(this);
-  }
-  xhttp.open("GET", "cd_catalog.xml");
-  xhttp.send();
-}
-function myFunction(xml) {
-  const xmlDoc = xml.responseXML;
-  const x = xmlDoc.getElementsByTagName("CD");
-  let table="<tr><th>Artist</th><th>Title</th></tr>";
-  for (let i = 0; i <x.length; i++) { 
-    table += "<tr><td>" +
-    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
-    "</td></tr>";
-  }
-  document.getElementById("demo").innerHTML = table;
-}
-</script>
+    <script>
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                myFunction(this);
+            }
+            xhttp.open("GET", "cd_catalog.xml");
+            xhttp.send();
+        }
+        function myFunction(xml) {
+            const xmlDoc = xml.responseXML;
+            const x = xmlDoc.getElementsByTagName("CD");
+            let table="<tr><th>Artist</th><th>Title</th></tr>";
+            for (let i = 0; i <x.length; i++) { 
+                table += "<tr><td>" +
+                x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                "</td></tr>";
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+    </script>
 
-</head>
-
-<div class="container">
-    
-    <ul>
-        <li>
-            <h2>Explanation of AJAX</h2>
-            <p>PLACEHOLDER</p>
-        </li>
-        
-        <li>
-            <h2>REST API</h2>
-            <p>PLACEHOLDER</p>
-        </li>
-
-    </ul>
-</div>
-
+    <div class="container">
+        <ul>
+            <li>
+                <h2>Explanation of AJAX</h2>
+                <p>PLACEHOLDER</p>
+            </li>
+            
+            <li>
+                <h2>REST API</h2>
+                <p>PLACEHOLDER</p>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
+
